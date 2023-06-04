@@ -21,3 +21,18 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: pracharya2601/nextjs-starter:latest
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to digital ocean droplet
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd "$HOME/starter"
+            docker compose down
+            docker pull pracharya2601/nextjs-starter:latest
+            docker compose up -d
+            docker system prune -f
