@@ -1,0 +1,19 @@
+version: "3.1"
+services:
+  app:
+    image: nextjs-starter:latest
+    restart: always
+    ports:
+      - 3000:3000
+    # environment variables
+    # environment:
+    #   FOO: bar
+
+    # environment variables from .env
+    # environment:
+    #   - FOO
+    #   - BLAH
+
+# example .env file in the same directory
+# FOO=BAR
+# BLAH=BLOCK
